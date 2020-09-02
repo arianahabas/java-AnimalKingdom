@@ -2,6 +2,6 @@ package kingdom;
 
 public interface CheckAnimals {
 
-    boolean test(Animals a); 
-
+    boolean test(Animals a); // returns true or false
+ 
 }
