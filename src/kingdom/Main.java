@@ -1,9 +1,16 @@
 package kingdom;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+
 public class Main {
     public static void main(String[] args){
+        //test
         System.out.println("yooooo!");
 
+        //make mammals
         Mammals panda = new Mammals ("Panda", 1869);
         System.out.println(panda);
         Mammals zebra = new Mammals ("Zebra", 1778);
@@ -19,6 +26,7 @@ public class Main {
         Mammals bigfoot = new Mammals ("Bigfoot", 2021);
         System.out.println(bigfoot);
 
+        //make birds
         Birds pigeon = new Birds("Pigeon", 1837);
         System.out.println(pigeon);
         Birds peacock = new Birds("Peacock", 1821);
@@ -30,12 +38,67 @@ public class Main {
         Birds swan = new Birds("Swan", 1758);
         System.out.println(swan);
 
+        //make fish
         Fish salmon = new Fish("Salmon", 1758);
         System.out.println(salmon);
         Fish catfish = new Fish("Catfish", 1817);
         System.out.println(catfish);
         Fish perch = new Fish("Perch", 1758);
         System.out.println(perch);
+
+        //create lists 
+        List<Animals> animalList = new ArrayList<>();
+        
+        animalList.add(panda);
+        animalList.add(zebra);
+        animalList.add(koala);
+        animalList.add(sloth);
+        animalList.add(armadillo);
+        animalList.add(raccoon);
+        animalList.add(bigfoot);
+        animalList.add(pigeon);
+        animalList.add(peacock);
+        animalList.add(toucan);
+        animalList.add(parrot);
+        animalList.add(swan);
+        animalList.add(salmon);
+        animalList.add(catfish);
+        animalList.add(perch);
+
+        //Use Lambda expressions to sort the animalList
+
+        // List all the animals in descending order by year named
+        System.out.println("\n*** Decending order by year named ***\n");
+        animalList.sort((a1, a2) -> a2.getYearNamed() - (a1.getYearNamed()));
+        animalList.forEach((a) -> System.out.println(a.getYearNamed()));
+   
+        // List all the animals alphabetically
+        System.out.println("\n*** Alphabetically ***\n");
+        animalList.sort((a1, a2) -> a1.getName().compareToIgnoreCase(a2.getName())); // string method: compareToIgnoreCase(ABC)
+        animalList.forEach((a) -> System.out.println(a.getName()));
+
+        // List all the animals order by how they move
+        System.out.println("\n*** Animals ordered by how they move ***\n");
+        animalList.sort((a1, a2) -> a1.move().compareToIgnoreCase(a2.move()));
+        animalList.forEach((a) -> System.out.println(a));
+
+        // List only those animals the breath with lungs
+        System.out.println("\n*** Animals that breath with lungs ***\n");
+        List<Animals> breathLungs = animalList.stream().filter(a -> a.breath().equals("lungs"))
+            .collect(Collectors.toList());
+            breathLungs.forEach(a -> System.out.println(a.getName()));
+
+        //List only those animals that breath with lungs and were named in 1758
+        // System.out.println("\n*** Animals that breath with lungs and were named in 1758 ***\n");
+        // List<Animals> oldLungs = animalList.stream().filter(a -> a.breath().equals("lungs")|| a.getYearNamed() == 1758)
+
+
+        //List only those animals that lay eggs and breath with lungs
+        System.out.println("\n*** Animals that lay eggs and breath with lungs ***\n");
+
+        //List alphabetically only those animals that were named in 1758
+        System.out.println("\n*** Alphabetically only those animals that were named in 1758 ***\n");
+     
 
 
     }
